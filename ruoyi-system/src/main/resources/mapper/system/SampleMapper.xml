@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SampleMapper">
+    
+    <resultMap type="Sample" id="SampleResult">
+        <result property="ioId"    column="io_id"    />
+        <result property="number"    column="number"    />
+        <result property="sampleNumber"    column="sample_number"    />
+        <result property="investigationShip"    column="investigation_ship"    />
+        <result property="voyage"    column="voyage"    />
+        <result property="seaArea"    column="sea_area"    />
+        <result property="standingPosition"    column="standing_position"    />
+        <result property="xCoordinate"    column="x_coordinate"    />
+        <result property="yCoordinate"    column="y_coordinate"    />
+        <result property="detailedAddress"    column="detailed_address"    />
+        <result property="endDepth"    column="end_depth"    />
+        <result property="heartLength"    column="heart_length"    />
+        <result property="storageLocation"    column="storage_location"    />
+        <result property="preservationStatus"    column="preservation_status"    />
+        <result property="remarks"    column="remarks"    />
+    </resultMap>
+
+    <sql id="selectSampleVo">
+        select io_id, number, sample_number, investigation_ship, voyage, sea_area, standing_position, x_coordinate, y_coordinate, detailed_address, end_depth, heart_length, storage_location, preservation_status, remarks from sample
+    </sql>
+
+    <select id="selectSampleList" parameterType="Sample" resultMap="SampleResult">
+        <include refid="selectSampleVo"/>
+        <where>  
+            <if test="number != null "> and number = #{number}</if>
+            <if test="sampleNumber != null  and sampleNumber != ''"> and sample_number = #{sampleNumber}</if>
+            <if test="investigationShip != null  and investigationShip != ''"> and investigation_ship = #{investigationShip}</if>
+            <if test="voyage != null  and voyage != ''"> and voyage = #{voyage}</if>
+            <if test="seaArea != null  and seaArea != ''"> and sea_area = #{seaArea}</if>
+            <if test="standingPosition != null  and standingPosition != ''"> and standing_position = #{standingPosition}</if>
+            <if test="xCoordinate != null "> and x_coordinate = #{xCoordinate}</if>
+            <if test="yCoordinate != null "> and y_coordinate = #{yCoordinate}</if>
+            <if test="detailedAddress != null  and detailedAddress != ''"> and detailed_address = #{detailedAddress}</if>
+            <if test="endDepth != null "> and end_depth = #{endDepth}</if>
+            <if test="heartLength != null "> and heart_length = #{heartLength}</if>
+            <if test="storageLocation != null  and storageLocation != ''"> and storage_location = #{storageLocation}</if>
+            <if test="preservationStatus != null  and preservationStatus != ''"> and preservation_status = #{preservationStatus}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+        </where>
+    </select>
+    
+    <select id="selectSampleByIoId" parameterType="Long" resultMap="SampleResult">
+        <include refid="selectSampleVo"/>
+        where io_id = #{ioId}
+    </select>
+        
+    <insert id="insertSample" parameterType="Sample" useGeneratedKeys="true" keyProperty="ioId">
+        insert into sample
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="number != null">number,</if>
+            <if test="sampleNumber != null">sample_number,</if>
+            <if test="investigationShip != null">investigation_ship,</if>
+            <if test="voyage != null">voyage,</if>
+            <if test="seaArea != null">sea_area,</if>
+            <if test="standingPosition != null">standing_position,</if>
+            <if test="xCoordinate != null">x_coordinate,</if>
+            <if test="yCoordinate != null">y_coordinate,</if>
+            <if test="detailedAddress != null">detailed_address,</if>
+            <if test="endDepth != null">end_depth,</if>
+            <if test="heartLength != null">heart_length,</if>
+            <if test="storageLocation != null">storage_location,</if>
+            <if test="preservationStatus != null">preservation_status,</if>
+            <if test="remarks != null">remarks,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="number != null">#{number},</if>
+            <if test="sampleNumber != null">#{sampleNumber},</if>
+            <if test="investigationShip != null">#{investigationShip},</if>
+            <if test="voyage != null">#{voyage},</if>
+            <if test="seaArea != null">#{seaArea},</if>
+            <if test="standingPosition != null">#{standingPosition},</if>
+            <if test="xCoordinate != null">#{xCoordinate},</if>
+            <if test="yCoordinate != null">#{yCoordinate},</if>
+            <if test="detailedAddress != null">#{detailedAddress},</if>
+            <if test="endDepth != null">#{endDepth},</if>
+            <if test="heartLength != null">#{heartLength},</if>
+            <if test="storageLocation != null">#{storageLocation},</if>
+            <if test="preservationStatus != null">#{preservationStatus},</if>
+            <if test="remarks != null">#{remarks},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSample" parameterType="Sample">
+        update sample
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="number != null">number = #{number},</if>
+            <if test="sampleNumber != null">sample_number = #{sampleNumber},</if>
+            <if test="investigationShip != null">investigation_ship = #{investigationShip},</if>
+            <if test="voyage != null">voyage = #{voyage},</if>
+            <if test="seaArea != null">sea_area = #{seaArea},</if>
+            <if test="standingPosition != null">standing_position = #{standingPosition},</if>
+            <if test="xCoordinate != null">x_coordinate = #{xCoordinate},</if>
+            <if test="yCoordinate != null">y_coordinate = #{yCoordinate},</if>
+            <if test="detailedAddress != null">detailed_address = #{detailedAddress},</if>
+            <if test="endDepth != null">end_depth = #{endDepth},</if>
+            <if test="heartLength != null">heart_length = #{heartLength},</if>
+            <if test="storageLocation != null">storage_location = #{storageLocation},</if>
+            <if test="preservationStatus != null">preservation_status = #{preservationStatus},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+        </trim>
+        where io_id = #{ioId}
+    </update>
+
+    <delete id="deleteSampleByIoId" parameterType="Long">
+        delete from sample where io_id = #{ioId}
+    </delete>
+
+    <delete id="deleteSampleByIoIds" parameterType="String">
+        delete from sample where io_id in 
+        <foreach item="ioId" collection="array" open="(" separator="," close=")">
+            #{ioId}
+        </foreach>
+    </delete>
+</mapper>
