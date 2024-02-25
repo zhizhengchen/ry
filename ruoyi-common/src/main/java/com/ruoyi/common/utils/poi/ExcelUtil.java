@@ -306,7 +306,24 @@ public class ExcelUtil<T>
         }
         return list;
     }
-
+    public List<T> importExcel(InputStream is,Integer titleNumber)
+    {
+        List<T> list = null;
+        try
+        {
+            list = importExcel(is, titleNumber);
+        }
+        catch (Exception e)
+        {
+            log.error("导入Excel异常{}", e.getMessage());
+            throw new UtilException(e.getMessage());
+        }
+        finally
+        {
+            IOUtils.closeQuietly(is);
+        }
+        return list;
+    }
     /**
      * 对excel表单默认第一个索引名转换成list
      * 

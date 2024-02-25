@@ -3,7 +3,8 @@ package com.ruoyi.system.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ruoyi.common.core.domain.entity.SysUser;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,6 +60,7 @@ public class SampleController extends BaseController {
         util.exportExcel(response, list, "样品信息管理数据");
     }
 
+
     /**
      * 导入样品信息管理列表
      */
@@ -77,15 +79,19 @@ public class SampleController extends BaseController {
         ExcelUtil<Sample> util = new ExcelUtil<Sample>(Sample.class);
         util.importTemplateExcel(response, "样品信息");
     }
+
     @Log(title = "样品信息管理导入", businessType = BusinessType.IMPORT)
     @PreAuthorize("@ss.hasPermi('system:sample:import')")
     @PostMapping("/importData")
-    public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception
-    {
-        ExcelUtil<Sample> util = new ExcelUtil<Sample>(Sample.class);
-        List<Sample> sampleList = util.importExcel(file.getInputStream());
+    public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
         String operName = getUsername();
-        System.out.println(sampleList);
+        ImportParams params = new ImportParams();
+        params.setTitleRows(1);
+        // 从第几行开始，因为第一个大标题被上面的参数给占了，所以不是4
+        params.setHeadRows(2);
+        List<Sample> sampleList = ExcelImportUtil.importExcel(file.getInputStream(), Sample.class, params);
+        System.out.println("listSize: " + sampleList.size());
+        sampleList.forEach(System.out::println);
         String message = sampleService.importSample(sampleList, updateSupport, operName);
         return success(message);
     }

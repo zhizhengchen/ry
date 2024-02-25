@@ -1,19 +1,18 @@
 package com.ruoyi.system.domain;
 
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
-
-import cn.afterturn.easypoi.excel.annotation.Excel;
-
 /**
  * 样品信息管理对象 sample
  *
  * @author ruoyi
  * @date 2024-02-23
  */
-public class Sample extends BaseEntity {
-    private static final Long serialVersionUID = 1L;
+public class SampleCopy extends BaseEntity {
+    private static final long serialVersionUID = 1L;
 
     /**
      * id
@@ -24,7 +23,7 @@ public class Sample extends BaseEntity {
      * 序号
      */
     @Excel(name = "序号")
-    private String number;
+    private Long number;
 
     /**
      * 样品编号
@@ -47,7 +46,7 @@ public class Sample extends BaseEntity {
     /**
      * 海域
      */
-    @Excel(name = "海域",groupName = "详细位置")
+    @Excel(name = "海域")
     private String seaArea;
 
     /**
@@ -77,13 +76,13 @@ public class Sample extends BaseEntity {
     /**
      * 结束深度
      */
-    @Excel(name = "结束深度（m）")
+    @Excel(name = "结束深度")
     private Float endDepth;
 
     /**
      * 心长
      */
-    @Excel(name = "心长（m）")
+    @Excel(name = "心长")
     private Float heartLength;
 
     /**
@@ -111,11 +110,11 @@ public class Sample extends BaseEntity {
         return ioId;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Long number) {
         this.number = number;
     }
 
-    public String getNumber() {
+    public Long getNumber() {
         return number;
     }
 
@@ -223,7 +222,7 @@ public class Sample extends BaseEntity {
         return remarks;
     }
 
-    public Sample(Long ioId, String number, String sampleNumber, String investigationShip, String voyage, String seaArea, String standingPosition, Float xCoordinate, Float yCoordinate, String detailedAddress, Float endDepth, Float heartLength, String storageLocation, String preservationStatus, String remarks) {
+    public SampleCopy(Long ioId, Long number, String sampleNumber, String investigationShip, String voyage, String seaArea, String standingPosition, Float xCoordinate, Float yCoordinate, String detailedAddress, Float endDepth, Float heartLength, String storageLocation, String preservationStatus, String remarks) {
         this.ioId = ioId;
         this.number = number;
         this.sampleNumber = sampleNumber;
@@ -241,7 +240,7 @@ public class Sample extends BaseEntity {
         this.remarks = remarks;
     }
 
-    public Sample(Sample sample) {
+    public SampleCopy(SampleCopy sample) {
         if (sample.getIoId().equals("<null>")) {
             this.sampleNumber = null;
         }
@@ -289,7 +288,7 @@ public class Sample extends BaseEntity {
         }
     }
 
-    public Sample() {
+    public SampleCopy() {
 
     }
 

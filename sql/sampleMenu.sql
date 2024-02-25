@@ -1,22 +1,43 @@
--- 菜单 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】', '3', '1', 'sample', 'system/sample/index', 1, 0, 'C', '0', '0', 'system:sample:list', '#', 'admin', sysdate(), '', null, '【请填写功能名称】菜单');
+/*
+ Navicat Premium Data Transfer
 
--- 按钮父菜单ID
-SELECT @parentId := LAST_INSERT_ID();
+ Source Server         : 本机数据库MySql_8.0.23
+ Source Server Type    : MySQL
+ Source Server Version : 80032
+ Source Host           : localhost:3306
+ Source Schema         : ry-vue
 
--- 按钮 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:sample:query',        '#', 'admin', sysdate(), '', null, '');
+ Target Server Type    : MySQL
+ Target Server Version : 80032
+ File Encoding         : 65001
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:sample:add',          '#', 'admin', sysdate(), '', null, '');
+ Date: 25/02/2024 15:25:19
+*/
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:sample:edit',         '#', 'admin', sysdate(), '', null, '');
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:sample:remove',       '#', 'admin', sysdate(), '', null, '');
+-- ----------------------------
+-- Table structure for sample
+-- ----------------------------
+DROP TABLE IF EXISTS `sample`;
+CREATE TABLE `sample`  (
+  `io_id` int NOT NULL AUTO_INCREMENT,
+  `number` int NULL DEFAULT NULL,
+  `sample_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `investigation_ship` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `voyage` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `sea_area` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `standing_position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `x_coordinate` float NULL DEFAULT NULL,
+  `y_coordinate` float NULL DEFAULT NULL,
+  `detailed_address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `end_depth` float NULL DEFAULT NULL,
+  `heart_length` float NULL DEFAULT NULL,
+  `storage_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `preservation_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `remarks` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  PRIMARY KEY (`io_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 244 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:sample:export',       '#', 'admin', sysdate(), '', null, '');
+SET FOREIGN_KEY_CHECKS = 1;

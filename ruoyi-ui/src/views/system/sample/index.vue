@@ -89,6 +89,14 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+      <el-form-item label="保存状况" prop="preservationStatus">
+        <el-input
+          v-model="queryParams.preservationStatus"
+          placeholder="请输入保存状况"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -138,7 +146,7 @@
               v-hasPermi="['system:sample:import']"
             >导入</el-button>
           </el-col>
-      <el-col :span="1.5">
+      <!-- <el-col :span="1.5">
         <el-button
           type="warning"
           plain
@@ -147,7 +155,7 @@
           @click="handleExport"
           v-hasPermi="['system:sample:export']"
         >导出</el-button>
-      </el-col>
+      </el-col> -->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -235,6 +243,9 @@
         <el-form-item label="存放位置" prop="storageLocation">
           <el-input v-model="form.storageLocation" placeholder="请输入存放位置" />
         </el-form-item>
+        <el-form-item label="保存状况" prop="preservationStatus">
+          <el-input v-model="form.preservationStatus" placeholder="请输入保存状况" />
+        </el-form-item>
         <el-form-item label="备注" prop="remarks">
           <el-input v-model="form.remarks" type="textarea" placeholder="请输入内容" />
         </el-form-item>
@@ -265,7 +276,7 @@
             <!-- <el-checkbox v-model="upload.updateSupport" /> 是否更新冲突的数据 -->
           </div>
           <span>仅允许导入xls、xlsx格式文件。</span>
-          <el-link type="primary" :underline="false" style="font-size:12px;vertical-align: baseline;" @click="importTemplate">下载模板</el-link>
+          <!-- <el-link type="primary" :underline="false" style="font-size:12px;vertical-align: baseline;" @click="importTemplate">下载模板</el-link> -->
         </div>
       </el-upload>
       <div slot="footer" class="dialog-footer">
